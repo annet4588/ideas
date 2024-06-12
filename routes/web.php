@@ -6,6 +6,7 @@
  * users
  */
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,11 @@ Route::put('/ideas/{idea}', [IdeaController::class, 'update'])->name('ideas.upda
 Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
 
 Route::post('/ideas/{idea}/comments', [CommentController::class, 'store'])->name('ideas.comments.store');
+
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+
+Route::post('/register', [AuthController::class, 'store']);
+
 
 // Route::get('/profile', [ProfileController::class, 'index']);
 // Route::get('/feed', function () {
