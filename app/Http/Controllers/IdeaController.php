@@ -15,12 +15,18 @@ class IdeaController extends Controller
 
      //Edit Method - copy show method and create a var editing
      public function edit(Idea $idea){
+        if(auth()->id() !== $idea->user_id){
+            abort(404);
+        }
         $editing = true;
         return view('ideas.show',compact('idea', 'editing'));
      }
 
       //Update Method
       public function update(Idea $idea){
+        if(auth()->id() !== $idea->user_id){
+            abort(404);
+        }
         request()->validate([
             'content'=> 'required|min:5|max:240'
           ]);
@@ -31,15 +37,15 @@ class IdeaController extends Controller
      }
     public function store(){
         //Validate
-        request()->validate([
+        $validated = request()->validate([
           'content'=> 'required|min:5|max:240'
         ]);
+
+        $validated['user_id'] = auth()->id(); //to get id
+
          //Create a database entry (record)
-         $idea = Idea::create(     //To automate - pass an array here
-            [
-             'content' => request()->get('content', ''), //request method
-            ]
-        );
+         Idea::create($validated);
+
         //redirect user back to Dashboard
         return redirect()->route('dashboard')->with('success', 'Idea created successfully');
 
@@ -47,6 +53,9 @@ class IdeaController extends Controller
 
     //Destroy method
     public function destroy(Idea $idea){
+        if(auth()->id() !== $idea->user_id){
+            abort(404);
+        }
         //Laravel automatically inject the Idea inside destroy(Idea $id)
         $idea->delete();
 
@@ -66,3 +75,10 @@ class IdeaController extends Controller
 
         //View all
         // dump(Idea::all());
+
+                 //Create a database entry (record)
+        //  Idea::create(    //To automate - pass an array here
+            // [
+            //  'content' => request()->get('content', ''), //request method
+            // ]
+        // );

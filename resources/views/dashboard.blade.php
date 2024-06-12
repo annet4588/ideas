@@ -12,6 +12,8 @@
             @include('shared.submit-idea')
             <hr>
 
+            <!--Display a message if no search results found-->
+            @if(count($ideas) > 0)
             <!--Create Ideas Cards-->
             @foreach ($ideas as $idea)
             <div class="mt-3">
@@ -19,9 +21,12 @@
                 @include('shared.idea-card')
             </div>
             @endforeach
+            @else
+               No Results Found.
+            @endif
             <!--Add Pagination bottom Links-->
             <div class="mt-3">
-            {{$ideas->links()}}
+            {{$ideas->withQueryString()->links()}}
             </div>
         </div>
         <div class="col-3">
