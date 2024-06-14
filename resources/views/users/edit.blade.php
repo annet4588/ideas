@@ -10,7 +10,7 @@
 
             <div class="mt-3">
                 <!--Include Profile Cards-->
-                @include('shared.user-card')
+                @include('shared.user-edit-card')
 
             </div>
             <hr>
