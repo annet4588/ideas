@@ -9,17 +9,17 @@
             @include('shared.success-message')
 
             <!--Share Ideas-->
-            @include('shared.submit-idea')
+            @include('ideas.shared.submit-idea')
             <hr>
 
             <!--Create Ideas Cards-->
             @forelse ($ideas as $idea)
                 <div class="mt-3">
                     <!--Include Ideas Cards-->
-                    @include('shared.idea-card')
+                    @include('ideas.shared.idea-card')
                 </div>
             @empty
-            No Results Found.
+            <p class="text-center mt-4">No Results Found.</p>
             @endforelse
 
             <!--Add Pagination bottom Links-->

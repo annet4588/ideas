@@ -10,7 +10,7 @@
 
             <div class="mt-3">
                 <!--Include Profile Cards-->
-                @include('shared.user-edit-card')
+                @include('users.shared.user-edit-card')
 
             </div>
             <hr>
@@ -18,7 +18,7 @@
             @forelse ($ideas as $idea)
                 <div class="mt-3">
                     <!--Include Ideas Cards-->
-                    @include('shared.idea-card')
+                    @include('ideas.shared.idea-card')
                 </div>
             @empty
             No Results Found.

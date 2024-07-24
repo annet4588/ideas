@@ -42,7 +42,7 @@
 
                 <div class="mt-3">
                     <!--Include Ideas Cards-->
-                   @include('shared.idea-card')
+                   @include('ideas.shared.idea-card')
                 </div>
             </div>
             <div class="col-3">

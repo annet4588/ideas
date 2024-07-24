@@ -69,6 +69,16 @@ class User extends Authenticatable
         return $this->followings()->where('user_id', $user->id)->exists();
     }
 
+    //Define a management relationship
+    public function likes(){
+        return $this->belongsToMany(Idea::class, 'idea_like')->withTimestamps(); #Pass the table name - idea_like, withTimestamps() to make sure created and updated that fields are set properly
+    }
+
+    //Check if any User likes any specific idea
+    public function likesIdea(Idea $idea){
+        return $this->likes()->where('idea_id', $idea->id)->exists();
+    }
+
     public function getImageURL(){
         if($this->image){
             return url('storage/', $this->image);
